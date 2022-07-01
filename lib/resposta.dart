@@ -17,6 +17,8 @@ class Resposta extends StatelessWidget {
           color: Colors.blue,
           child: Text(texto),
           onPressed: quandoSelecionado,
-        ));
+          
+        )
+    );
   }
 }

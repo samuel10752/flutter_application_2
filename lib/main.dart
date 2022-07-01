@@ -7,7 +7,7 @@ void main() {
 }
 
 class PerguntaApp extends StatefulWidget {
-  const PerguntaApp({Key? key}) : super(key: key);
+  const PerguntaApp({Key key}) : super(key: key);
 
   @override
   State<PerguntaApp> createState() => _PerguntaAppState();
@@ -35,6 +35,9 @@ class _PerguntaAppState extends State<PerguntaApp> {
        'texto': 'Qual é o a sua Melhor amiga ?',
        'respostas':['Maria','Daniela','Giovana','Julia',],
       },];
+    
+    List<String> respostas =
+        perguntas[_perguntaSelecionada].cast()['respostas'];
 
     return MaterialApp(
       home: Scaffold(
@@ -42,14 +45,12 @@ class _PerguntaAppState extends State<PerguntaApp> {
           title: const Text('Perguntas'),
         ),
         body: Column(
-          children:<Widget> [
-            Questao(perguntas[_perguntaSelecionada]['texto']as String),
-            Resposta('Resposta 1', _responder),
-            Resposta('Resposta 2', _responder),
-            Resposta('Resposta 3', _responder),
+          children: [
+            Questao(perguntas[_perguntaSelecionada]['texto'] as String),
+            ...respostas.map((t) => Resposta(t, _responder)).toList(),
           ],
         ),
       ),
-    ); 
+    );
   }
 }
